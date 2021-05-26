@@ -20,6 +20,9 @@ class DiscussionFetcher(SteamFetcher):
             url = DiscussionFetcher._STEAM_DISCUSSIONS_URL.format(app_id)
             response = urllib.request.urlopen(url).read()
             raw_html = response.decode('utf-8')
+            with open("{}.html".format(app_id), 'w') as f:
+                f.write(raw_html)
+
 
             # Repair HTML so we can use XPath
             raw_html = raw_html.replace('class="searchtext"', '')
